@@ -11,7 +11,7 @@ namespace LoginAndRegistrationForm2
     {
         string firstName;
         string lastName;
-        string userName;
+        public string userName;
         string password;
         string confirmPassword;
         SqlConnection Conn = new SqlConnection(); //
@@ -78,16 +78,20 @@ namespace LoginAndRegistrationForm2
 
         private bool checkUserExists(string userName)
         {
-            String sqlText = $"select count(*) from dbo.users where username = '{userName}'"; //Select count wil give the number of rows in user table with the given username. This will be sent to the database from the application
+            //String sqlText = $"select count(*) from dbo.users where username = '{userName}'"; //Select count wil give the number of rows in user table with the given username. This will be sent to the database from the application
+            String sqlText = $"select ID from dbo.users where username = '{userName}'"; //Select count wil give the number of rows in user table with the given username. This will be sent to the database from the application
             SqlDataReader dataReader = runSQLSelect(sqlText); // runSQLSelect method gives the results of the given query Datareader holds the number of rows returned when searching for the usernmae to indicate whether the use
 
             bool result = false;
             while (dataReader.Read()) //Iterates on the result set
             {
-                int userCount = dataReader.GetInt32(0); 
-                result = (userCount == 0) ? false : true;
+               // int userCount = dataReader.GetInt32(0);
+                UserDetails.userID = dataReader.GetInt32(0);
+                //result = (userCount == 0) ? false : true;
+                result = true;
 
                 //MessageBox.Show($"User count is {userCount} and result is {result}");
+                
             }
             dataReader.Close();
             return result;
@@ -189,6 +193,7 @@ namespace LoginAndRegistrationForm2
         {
             userName = textBoxUsernameL.Text.Trim();
             password = textBoxPasswordL.Text.Trim();
+            UserDetails.userName = userName;
             if ( userName.Length == 0 || password.Length == 0 )
             {
                 MessageBox.Show("Missing mandatory fileds");
@@ -200,7 +205,7 @@ namespace LoginAndRegistrationForm2
             else if (! checkUserExists(userName))
             {
                 MessageBox.Show($"Username {userName} does not exist. Correct user name and try again");
-            } 
+            }
             else if (!  validateUser(userName, password))
             {
                 MessageBox.Show($"Incorrect password {password} Correct password and try again");
@@ -209,7 +214,8 @@ namespace LoginAndRegistrationForm2
             // User activity after login
             else 
             {
-                UserActivity ua = new UserActivity(userName);
+                MessageBox.Show("UserID = " + UserDetails.userID.ToString());
+                UserActivity ua = new UserActivity();
                 this.Hide();
 
 
@@ -225,6 +231,16 @@ namespace LoginAndRegistrationForm2
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void textBoxUsernameL_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelLogin_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

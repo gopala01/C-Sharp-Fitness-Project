@@ -46,17 +46,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="databaseConnection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="databaseConnection.Designer.cs">
+      <DependentUpon>databaseConnection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTimetableMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTimetableMainMenu.Designer.cs">
+      <DependentUpon>FormTimetableMainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLoginRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLoginRegistration.Designer.cs">
       <DependentUpon>frmLoginRegistration.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainMenu.Designer.cs">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProgress.Designer.cs">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmQuiz.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmQuiz.Designer.cs">
       <DependentUpon>frmQuiz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSetTimetable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSetTimetable.Designer.cs">
+      <DependentUpon>FrmSetTimetable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTimetable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTimetable.Designer.cs">
+      <DependentUpon>frmTimetable.cs</DependentUpon>
     </Compile>
     <Compile Include="UserActivity.cs">
       <SubType>Form</SubType>
@@ -66,11 +102,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDetails.cs" />
+    <EmbeddedResource Include="databaseConnection.resx">
+      <DependentUpon>databaseConnection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTimetableMainMenu.resx">
+      <DependentUpon>FormTimetableMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLoginRegistration.resx">
       <DependentUpon>frmLoginRegistration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMainMenu.resx">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProgress.resx">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmQuiz.resx">
       <DependentUpon>frmQuiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSetTimetable.resx">
+      <DependentUpon>FrmSetTimetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTimetable.resx">
+      <DependentUpon>frmTimetable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,6 +139,10 @@
     <EmbeddedResource Include="UserActivity.resx">
       <DependentUpon>UserActivity.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="MainMenu.Designer.form" />
+    <None Include="MainMenu.form">
+      <SubType>Form</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

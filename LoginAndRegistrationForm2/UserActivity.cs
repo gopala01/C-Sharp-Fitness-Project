@@ -9,7 +9,14 @@ namespace LoginAndRegistrationForm2
     {
 
         string userName;
+        decimal currentWeight;
+        decimal targetWeight;
         bool userDetailsExists;
+        decimal change;
+        string diet;
+        string[] breakfastOptions;
+        string[] lunchOptions;
+        string[] dinnerOptions;
         SqlConnection Conn = new SqlConnection();
 
         //Assures each of these attributes can be used
@@ -39,18 +46,29 @@ namespace LoginAndRegistrationForm2
             cmd.ExecuteNonQuery();
 
         }
-        public UserActivity(string userName)
+        public UserActivity()
         {
-            this.userName = userName;
+            //this.userName = userName;
+            //this.currentWeight = currentWeight;
+            //this.targetWeight = targetWeight;
+            //this.change = change;
+            //this.diet = diet;
+            //this.breakfastOptions = breakfastOptions;
+            //this.lunchOptions = lunchOptions;
+            //this.dinnerOptions = dinnerOptions;
             InitializeComponent();
         }
 
+        
+
         private bool checkUserDetails(string userName)
         {
-            String sqlText = $"select count(*) from dbo.user_details ud where username = '{userName}'";
+            String sqlText = $"select count(*) from dbo.user_details ud where username = '{UserDetails.userName}'";
             SqlDataReader dataReader = runSQLSelect(sqlText);
             bool result = false;
             while (dataReader.Read())
+
+
             {
                 int userCount = dataReader.GetInt32(0);
                 result = (userCount == 1) ? true : false;
@@ -68,7 +86,7 @@ namespace LoginAndRegistrationForm2
             Conn.ConnectionString = ConnectinString;
             Conn.Open();
             // check if user details exists
-            userDetailsExists = checkUserDetails(userName);
+            userDetailsExists = checkUserDetails(UserDetails.userName);
             // if not disable main Menu button.
             if (!userDetailsExists)
             {
@@ -83,17 +101,18 @@ namespace LoginAndRegistrationForm2
 
         private void Quiz_Click(object sender, EventArgs e)
         {
+            
             Form qz = new frmQuiz(userName, userDetailsExists);
             //this.Hide();
             qz.ShowDialog();
             if (! mainMenu.Enabled)
             {
-                bool userDetailsExists = checkUserDetails(userName);
+                bool userDetailsExists = checkUserDetails(UserDetails.userName);
                 // if not disable main Menu button.
                 if (userDetailsExists)
                 {
                     mainMenu.Enabled = true;
-                  
+                    Quiz.Enabled = false;
                 }
            
             }
@@ -108,6 +127,19 @@ namespace LoginAndRegistrationForm2
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainMenu_Click(object sender, EventArgs e)
+        {
+            frmMainMenu mm = new frmMainMenu(userName, currentWeight, targetWeight);
+            this.Hide();
+            mm.ShowDialog();
+            this.Show();
         }
     }
 }

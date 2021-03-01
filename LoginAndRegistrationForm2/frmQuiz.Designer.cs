@@ -40,7 +40,7 @@ namespace LoginAndRegistrationForm2
             this.groupBoxGender = new System.Windows.Forms.GroupBox();
             this.numCurrentWeight = new System.Windows.Forms.NumericUpDown();
             this.numTargetWeight = new System.Windows.Forms.NumericUpDown();
-            this.saveUserDetails = new System.Windows.Forms.Button();
+            this.saveUserDetailsNext = new System.Windows.Forms.Button();
             this.lblDiet = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioVeg = new System.Windows.Forms.RadioButton();
@@ -140,6 +140,7 @@ namespace LoginAndRegistrationForm2
             this.radioFemale.TabIndex = 7;
             this.radioFemale.Text = "Female";
             this.radioFemale.UseVisualStyleBackColor = true;
+            this.radioFemale.CheckedChanged += new System.EventHandler(this.radioFemale_CheckedChanged);
             // 
             // radioOther
             // 
@@ -197,7 +198,6 @@ namespace LoginAndRegistrationForm2
             0,
             0,
             0});
-            this.numCurrentWeight.ValueChanged += new System.EventHandler(this.numCurrentWeight_ValueChanged);
             // 
             // numTargetWeight
             // 
@@ -228,20 +228,21 @@ namespace LoginAndRegistrationForm2
             0,
             0,
             0});
+            this.numTargetWeight.ValueChanged += new System.EventHandler(this.numTargetWeight_ValueChanged);
             // 
-            // saveUserDetails
+            // saveUserDetailsNext
             // 
-            this.saveUserDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
-            this.saveUserDetails.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.saveUserDetails.Font = new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveUserDetails.ForeColor = System.Drawing.Color.White;
-            this.saveUserDetails.Location = new System.Drawing.Point(282, 288);
-            this.saveUserDetails.Name = "saveUserDetails";
-            this.saveUserDetails.Size = new System.Drawing.Size(144, 43);
-            this.saveUserDetails.TabIndex = 12;
-            this.saveUserDetails.Text = "SAVE";
-            this.saveUserDetails.UseVisualStyleBackColor = false;
-            this.saveUserDetails.Click += new System.EventHandler(this.saveUserDetails_Click);
+            this.saveUserDetailsNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.saveUserDetailsNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.saveUserDetailsNext.Font = new System.Drawing.Font("Microsoft YaHei", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveUserDetailsNext.ForeColor = System.Drawing.Color.White;
+            this.saveUserDetailsNext.Location = new System.Drawing.Point(274, 381);
+            this.saveUserDetailsNext.Name = "saveUserDetailsNext";
+            this.saveUserDetailsNext.Size = new System.Drawing.Size(144, 43);
+            this.saveUserDetailsNext.TabIndex = 12;
+            this.saveUserDetailsNext.Text = "NEXT";
+            this.saveUserDetailsNext.UseVisualStyleBackColor = false;
+            this.saveUserDetailsNext.Click += new System.EventHandler(this.saveUserDetails_Click);
             // 
             // lblDiet
             // 
@@ -269,6 +270,7 @@ namespace LoginAndRegistrationForm2
             this.groupBox1.Size = new System.Drawing.Size(205, 38);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // radioVeg
             // 
@@ -293,6 +295,7 @@ namespace LoginAndRegistrationForm2
             this.radioNonVeg.TabIndex = 7;
             this.radioNonVeg.Text = "Non-Veg";
             this.radioNonVeg.UseVisualStyleBackColor = true;
+            this.radioNonVeg.CheckedChanged += new System.EventHandler(this.radioNonVeg_CheckedChanged);
             // 
             // radioVegan
             // 
@@ -321,17 +324,18 @@ namespace LoginAndRegistrationForm2
             this.panel1.Location = new System.Drawing.Point(19, 13);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(632, 266);
+            this.panel1.Size = new System.Drawing.Size(632, 309);
             this.panel1.TabIndex = 15;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // frmQuiz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(695, 372);
+            this.ClientSize = new System.Drawing.Size(664, 594);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.saveUserDetails);
+            this.Controls.Add(this.saveUserDetailsNext);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmQuiz";
             this.Text = "Quiz";
@@ -360,7 +364,7 @@ namespace LoginAndRegistrationForm2
         private System.Windows.Forms.GroupBox groupBoxGender;
         private System.Windows.Forms.NumericUpDown numCurrentWeight;
         private System.Windows.Forms.NumericUpDown numTargetWeight;
-        private System.Windows.Forms.Button saveUserDetails;
+        private System.Windows.Forms.Button saveUserDetailsNext;
         private System.Windows.Forms.Label lblDiet;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioVeg;
