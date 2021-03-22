@@ -16,7 +16,8 @@ namespace LoginAndRegistrationForm2
         DateTime today = DateTime.Now;
 
         bool done;
-
+        
+        
         int n = 0;
 
         SqlConnection Conn = new SqlConnection();
@@ -28,6 +29,7 @@ namespace LoginAndRegistrationForm2
         public frmSetTimetable()
         {
             InitializeComponent();
+            
         }
 
         private void frmSetTimetable_Load(object sender, EventArgs e)
@@ -54,11 +56,6 @@ namespace LoginAndRegistrationForm2
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void AccessUsername()
-        {
             string[] times = new string[] {"6:30 - 7:30", "7:30 - 8:30", "8:30 - 9:30", "9:30 - 10:30", "10:30 - 11:30", "11:30 - 12:30", "12:30 - 13:30",
                                             "13:30 - 14:30", "14:30 - 15:30", "16:30 - 17:30", "17:30 - 18:30", "18:30 - 19:30", "19:30 - 20:30"};
             ComboBox[] dayTimetable = new ComboBox[] {comboBox630To730, comboBox730To830, comboBox830To930, comboBox930To1030, comboBox1030To1130, comboBox1130To1230,
@@ -82,13 +79,13 @@ namespace LoginAndRegistrationForm2
 
                 if (dayTimetable[i].SelectedItem == null)
                 {
-                    unfilledTimes = unfilledTimes + " " + times[i];
+                    unfilledTimes = unfilledTimes + " " + times[i]; //Adds onto this string
 
                 }
             }
             if (unfilledTimes != "")
             {
-                MessageBox.Show("No items selected at " + unfilledTimes + " - Please ensure to click all the boxes and select an option");
+                MessageBox.Show("No items selected at " + unfilledTimes + " - Please ensure to click all the boxes and select an option"); //This will now show where it is unfilled in one place
                 return;
             }
 
@@ -98,7 +95,7 @@ namespace LoginAndRegistrationForm2
             cmd.Connection = Conn;
             for (int i = 0; i < dayTimetable.Length; i++)
             {
-                cmd.CommandText = $"insert into timetable values('{UserDetails.userID}', '{labelDays.Text}' , '{timesOfDay[i].Text}','{dayTimetable[i].Text}')";
+                cmd.CommandText = $"insert into activity_timetable values('{UserDetails.userID}', '{today.AddDays(dayCount).Date.ToString("yyyy-MM-dd")}' , '{timesOfDay[i].Text}','{dayTimetable[i].Text}')";
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -123,23 +120,23 @@ namespace LoginAndRegistrationForm2
             labelDays.Text = today.AddDays(dayCount++).DayOfWeek.ToString();
             if (dayCount == 8)
             {
+                UserDetails.doneSetTimetable = done;
                 Conn.Close();
 
                 buttonNext.Enabled = false;
 
-                done = true;
+               UserDetails.doneSetTimetable = true;
 
                 FormTimetableMainMenu tm = new FormTimetableMainMenu();
                 this.Hide();
                 tm.ShowDialog();
-                this.Show();
                 this.Close();
-
-
                 //(this.Owner as FormTimetableMainMenu).
             }
-
-
+            //for (int i = 0; i < dayTimetable.Length; i++)
+            //{
+            //    dayTimetable[i].SelectedItem = null;
+            //}
         }
     }
 }

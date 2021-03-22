@@ -15,6 +15,8 @@ namespace LoginAndRegistrationForm2
         string password;
         string confirmPassword;
         SqlConnection Conn = new SqlConnection(); //
+
+
         //Assures each of these attributes can be used
 
         private SqlDataReader runSQLSelect(String cmdString)//Recieves
@@ -26,9 +28,7 @@ namespace LoginAndRegistrationForm2
             cmd.Connection = Conn;
 
             dataReader = cmd.ExecuteReader(); // executing the sql command on the database.
-
             return dataReader;
-
         }
 
         private void runNonQuerySQL(String cmdString)
@@ -79,20 +79,23 @@ namespace LoginAndRegistrationForm2
         private bool checkUserExists(string userName)
         {
             //String sqlText = $"select count(*) from dbo.users where username = '{userName}'"; //Select count wil give the number of rows in user table with the given username. This will be sent to the database from the application
-            String sqlText = $"select ID from dbo.users where username = '{userName}'"; //Select count wil give the number of rows in user table with the given username. This will be sent to the database from the application
+            String sqlText = $"select ID from dbo.users where username = '{UserDetails.userName}'"; //Select count wil give the number of rows in user table with the given username. This will be sent to the database from the application
             SqlDataReader dataReader = runSQLSelect(sqlText); // runSQLSelect method gives the results of the given query Datareader holds the number of rows returned when searching for the usernmae to indicate whether the use
+            //02/03/2021 - Last change
+
 
             bool result = false;
             while (dataReader.Read()) //Iterates on the result set
             {
                // int userCount = dataReader.GetInt32(0);
-                UserDetails.userID = dataReader.GetInt32(0);
+                int userID = dataReader.GetInt32(0);
                 //result = (userCount == 0) ? false : true;
                 result = true;
 
+                UserDetails.userID = userID;
                 //MessageBox.Show($"User count is {userCount} and result is {result}");
-                
             }
+            
             dataReader.Close();
             return result;
         }
@@ -121,8 +124,6 @@ namespace LoginAndRegistrationForm2
             runNonQuerySQL(cmdString);
             MessageBox.Show("Added user details to database");
         }
-
-      
 
         private void buttonRegister_Click(object sender, EventArgs e)
         {
@@ -208,7 +209,7 @@ namespace LoginAndRegistrationForm2
             }
             else if (!  validateUser(userName, password))
             {
-                MessageBox.Show($"Incorrect password {password} Correct password and try again");
+                MessageBox.Show($"Incorrect password {password}, please insert the correct password and try again");
             }
 
             // User activity after login
@@ -222,8 +223,10 @@ namespace LoginAndRegistrationForm2
                 ua.ShowDialog();
                 textBoxUsernameL.Text = "";
                 textBoxPasswordL.Text = "";
-                this.Show();
+                this.Close();
             }
+
+
 
 
         }

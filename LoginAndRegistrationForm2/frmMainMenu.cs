@@ -12,7 +12,11 @@ namespace LoginAndRegistrationForm2
 {
     public partial class frmMainMenu : Form
     {
-        public frmMainMenu(string userName, decimal currentWeight, decimal targetWeight)
+        DateTime now = DateTime.Now;
+        DateTime today = DateTime.Today;
+        string[] week = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+        public frmMainMenu()
         {
             InitializeComponent();
         }
@@ -27,16 +31,42 @@ namespace LoginAndRegistrationForm2
             FormTimetableMainMenu tm = new FormTimetableMainMenu();
             this.Hide();
             tm.ShowDialog();
-            this.Show();
+            this.Close();
             //this.Close();
         }
 
         private void buttonP_Click(object sender, EventArgs e)
         {
-
+            frmProgress p = new frmProgress();
+            this.Hide();
+            p.ShowDialog();
+            p.Close();
         }
 
         private void frmMainMenu_Load(object sender, EventArgs e)
+        {
+            for (int day = 0; day < week.Length; day++)
+            {
+                if (today.DayOfWeek.ToString() == week[day])
+                {
+                    //buttonDotD.Text = ("Breakfast for today - " + UserDetails.breakfastOptions[day] + "\r\nLunch for today - " + UserDetails.lunchOptions[day] + "\r\nDinner for today - " + UserDetails.dinnerOptions[day]);
+                }
+            }
+
+            buttonEotD.Text = ("Press ups = " + (Decimal.Multiply(UserDetails.change, 2)).ToString() + "\r\nSit ups = " + (Decimal.Multiply(UserDetails.change, 3)).ToString() + "\r\nMountain Climbers - " + (UserDetails.change).ToString() + "\r\nSquats - " + (Decimal.Multiply(UserDetails.change, 3).ToString()));
+        }
+
+        private void buttonDotD_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void buttonDoD_Click(object sender, EventArgs e)
+        {
+            //buttonDotD.Text = ("Breakfast for today - " + UserDetails.breakfastOptions[day] + "\r\nLunch for today - " + UserDetails.lunchOptions[day] + "\r\nDinner for today - " + UserDetails.dinnerOptions[day]);
+        }
+
+        private void labelEotD_Click(object sender, EventArgs e)
         {
 
         }

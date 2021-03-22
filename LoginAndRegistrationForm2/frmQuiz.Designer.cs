@@ -43,6 +43,7 @@ namespace LoginAndRegistrationForm2
             this.saveUserDetailsNext = new System.Windows.Forms.Button();
             this.lblDiet = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.radioVeg = new System.Windows.Forms.RadioButton();
             this.radioNonVeg = new System.Windows.Forms.RadioButton();
             this.radioVegan = new System.Windows.Forms.RadioButton();
@@ -51,6 +52,7 @@ namespace LoginAndRegistrationForm2
             ((System.ComponentModel.ISupportInitialize)(this.numCurrentWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTargetWeight)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -259,6 +261,7 @@ namespace LoginAndRegistrationForm2
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(49)))), ((int)(((byte)(49)))));
+            this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Controls.Add(this.radioVeg);
             this.groupBox1.Controls.Add(this.radioNonVeg);
             this.groupBox1.Controls.Add(this.radioVegan);
@@ -271,6 +274,13 @@ namespace LoginAndRegistrationForm2
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(14, 34);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(8, 20);
+            this.numericUpDown1.TabIndex = 9;
             // 
             // radioVeg
             // 
@@ -333,7 +343,7 @@ namespace LoginAndRegistrationForm2
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(664, 594);
+            this.ClientSize = new System.Drawing.Size(666, 594);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.saveUserDetailsNext);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -346,6 +356,7 @@ namespace LoginAndRegistrationForm2
             ((System.ComponentModel.ISupportInitialize)(this.numTargetWeight)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -371,5 +382,6 @@ namespace LoginAndRegistrationForm2
         private System.Windows.Forms.RadioButton radioNonVeg;
         private System.Windows.Forms.RadioButton radioVegan;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

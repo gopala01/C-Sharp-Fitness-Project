@@ -30,7 +30,6 @@
         {
             this.buttonTimetableMenuBack = new System.Windows.Forms.Button();
             this.buttonDisplayTimetable = new System.Windows.Forms.Button();
-            this.buttonUpdateTimetable = new System.Windows.Forms.Button();
             this.buttonSetTimetable = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -45,21 +44,13 @@
             // 
             // buttonDisplayTimetable
             // 
-            this.buttonDisplayTimetable.Location = new System.Drawing.Point(293, 195);
+            this.buttonDisplayTimetable.Location = new System.Drawing.Point(293, 165);
             this.buttonDisplayTimetable.Name = "buttonDisplayTimetable";
             this.buttonDisplayTimetable.Size = new System.Drawing.Size(197, 38);
             this.buttonDisplayTimetable.TabIndex = 9;
             this.buttonDisplayTimetable.Text = "Display Timetable";
             this.buttonDisplayTimetable.UseVisualStyleBackColor = true;
-            // 
-            // buttonUpdateTimetable
-            // 
-            this.buttonUpdateTimetable.Location = new System.Drawing.Point(293, 151);
-            this.buttonUpdateTimetable.Name = "buttonUpdateTimetable";
-            this.buttonUpdateTimetable.Size = new System.Drawing.Size(197, 38);
-            this.buttonUpdateTimetable.TabIndex = 8;
-            this.buttonUpdateTimetable.Text = "Update Timetable";
-            this.buttonUpdateTimetable.UseVisualStyleBackColor = true;
+            this.buttonDisplayTimetable.Click += new System.EventHandler(this.buttonDisplayTimetable_Click);
             // 
             // buttonSetTimetable
             // 
@@ -78,10 +69,10 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buttonTimetableMenuBack);
             this.Controls.Add(this.buttonDisplayTimetable);
-            this.Controls.Add(this.buttonUpdateTimetable);
             this.Controls.Add(this.buttonSetTimetable);
             this.Name = "FormTimetableMainMenu";
             this.Text = "FormTimetableMainMenu";
+            this.Load += new System.EventHandler(this.FormTimetableMainMenu_Load);
             this.ResumeLayout(false);
 
         }
@@ -90,7 +81,6 @@
 
         private System.Windows.Forms.Button buttonTimetableMenuBack;
         private System.Windows.Forms.Button buttonDisplayTimetable;
-        private System.Windows.Forms.Button buttonUpdateTimetable;
         private System.Windows.Forms.Button buttonSetTimetable;
     }
 }

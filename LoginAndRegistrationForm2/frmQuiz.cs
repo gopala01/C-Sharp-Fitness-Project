@@ -48,13 +48,11 @@ namespace LoginAndRegistrationForm2
             cmd.CommandText = cmdString;
             cmd.Connection = Conn;
             cmd.ExecuteNonQuery();
-
         }
 
-        public frmQuiz(string userName, bool userExists)
+        public frmQuiz()
         {
-            this.userName = userName;
-            this.userExists = userExists;
+
             InitializeComponent();
         }
 
@@ -74,7 +72,7 @@ namespace LoginAndRegistrationForm2
             string cmdString = "";
             string sqlformatdate = dob.ToString("yyyy-MM-dd");
             //MessageBox.Show(dob.ToString());
-            if (userExists)
+            if (userExists == true)
             {
                 //Amends data if user already exists
                 cmdString = $"update Dbo.user_details set datecreated = GetDate()," +
@@ -83,22 +81,23 @@ namespace LoginAndRegistrationForm2
                     $"dietType = '{diet}'" +
                     $" where username =  '{userName}'";
                 runNonQuerySQL(cmdString);
-                
+
+                MessageBox.Show($"User details for {UserDetails.userName} updated");
 
             }
             else //adds user data if user doesn't exist
             {
-                cmdString = $"INSERT INTO Dbo.user_details Values(GetDate(),'{userName}', '{dob}', '{gender}', " +
+                cmdString = $"INSERT INTO Dbo.user_details Values(GetDate(),'{userName}', '{sqlformatdate}', '{gender}', " +
                     $"{currentWeight}, {targetWeight}, '{diet}')";
                 runNonQuerySQL(cmdString);
+                MessageBox.Show($"User details for {UserDetails.userName} saved");
 
-                
+
             }
 
             //Debug.WriteLine(cmdString);
             //MessageBox.Show(cmdString);
-            
-            runNonQuerySQL(cmdString);
+
             //
 
 
@@ -109,7 +108,7 @@ namespace LoginAndRegistrationForm2
             targetWeight = numTargetWeight.Value;
             currentWeight = numCurrentWeight.Value;
             dob = dateTimePicker1.Value.Date;
-            MessageBox.Show("check 1"); 
+            //MessageBox.Show("check 1"); 
         
             if (radioMale.Checked)
             {
@@ -138,32 +137,13 @@ namespace LoginAndRegistrationForm2
             {
                 diet = "Vegan";
             }
-            change = currentWeight - targetWeight;
-            if (change > 0)
-            {
-                exerciseType = "Weight Loss";
-            }
-            else if (change < 0)
-            {
-                exerciseType = "Weight Gain";
-            }
-            
-
-              
-            
-
-
-            //frmSetTimetable st = new frmSetTimetable();
-            ////st.Show();
-            ////st.ShowDialog();
-            ////this.Show();
 
             if (diet == "Vegetarian")
             {
-                breakfastOptions = new string[]{ "Healthy Yogurt Parfait", "Pear Walnut Salad with a Mustard Orange Dressing", "Healthy Pumpkin Oatmeal Mini Muffins", "Vegan Overnight Oats in a Jar",  
+                breakfastOptions = new string[]{ "Healthy Yogurt Parfait", "Pear Walnut Salad with a Mustard Orange Dressing", "Healthy Pumpkin Oatmeal Mini Muffins", "Vegan Overnight Oats in a Jar",
                                           "Low Carb Cream Cheese Pancakes", "Chia Seeds Natural Energy Drink", "Smashed Chickpea Salad Sandwich", "Spinach Feta Pancakes"};
 
-                lunchOptions = new string[] { "Meatless Chili Con Carne", "Vegan Chickpea Summer Salad", "Turkish Lentil Salad", "Tangy Veggie Wrap", "Vegan Spanish Beans with Tomatoes", 
+                lunchOptions = new string[] { "Meatless Chili Con Carne", "Vegan Chickpea Summer Salad", "Turkish Lentil Salad", "Tangy Veggie Wrap", "Vegan Spanish Beans with Tomatoes",
                                        "Thai Quinoa Salad", "Vegetarian Tacos", "Vegan Cauliflower Risotto", "Curried Parsnip Soup", "Fitness Lentil Bean Salad"};
 
                 dinnerOptions = new string[] { "Easy Stuffed Bell Peppers in Mediterranean Tomato Sauce", "Easy Cauliflower Curry", "Roasted Eggplant And Tomato Gnocchi", "Baked Ricotta",
@@ -179,10 +159,10 @@ namespace LoginAndRegistrationForm2
                                           "Chia Seeds Natural Energy Drink", "Smashed Chickpea Salad Sandwich", "Spinach Feta Pancakes"};
 
                 lunchOptions = new string[] { "Meatless Chili Con Carne", "Vegan Chickpea Summer Salad", "Turkish Lentil Salad", "Easy Hemp Granola", "Tangy Veggie Wrap",
-                                        "Vegan Spanish Beans with Tomatoes", "Smoked Salmon Eggs Benedict", "Vegetarian Tacos", "Vegan Cauliflower Risotto", 
+                                        "Vegan Spanish Beans with Tomatoes", "Smoked Salmon Eggs Benedict", "Vegetarian Tacos", "Vegan Cauliflower Risotto",
                                        "Curried Parsnip Soup", "Fitness Lentil Bean Salad"};
 
-                dinnerOptions = new string[] { "Easy Stuffed Bell Peppers in Mediterranean Tomato Sauce", "Easy Cauliflower Curry", "Roasted Eggplant And Tomato Gnocchi", "Baked Ricotta", 
+                dinnerOptions = new string[] { "Easy Stuffed Bell Peppers in Mediterranean Tomato Sauce", "Easy Cauliflower Curry", "Roasted Eggplant And Tomato Gnocchi", "Baked Ricotta",
                                         " Broccoli and Cauliflower Soup", "Speedy Vegan Burrito", "Traditional Meatless Meatloaf", "Spicy Black Bean Soup", "Red Lentil Spinach Soup"};
 
                 //Link - https://hurrythefoodup.com/vegetarian-weight-loss-recipes-diet-month/
@@ -190,8 +170,8 @@ namespace LoginAndRegistrationForm2
 
             if (diet == "Non-Vegetarian")
             {
-                breakfastOptions = new string[]{ "Banana Egg Pancakes", "Bacon Egg in a Hole with Smashed Avocado", "Healthy Bacon, Egg, and Potato breakfast Casserole", 
-                                          "Healthy Pumpkin Oatmeal Mini Muffins", "Vegan Overnight Oats in a Jar", "Italian-Style Healthy breakfast Egg Muffins" , 
+                breakfastOptions = new string[]{ "Banana Egg Pancakes", "Bacon Egg in a Hole with Smashed Avocado", "Healthy Bacon, Egg, and Potato breakfast Casserole",
+                                          "Healthy Pumpkin Oatmeal Mini Muffins", "Vegan Overnight Oats in a Jar", "Italian-Style Healthy breakfast Egg Muffins" ,
                                           "Low Carb Cream Cheese Pancakes", "Chia Seeds Natural Energy Drink", "Smashed Chickpea Salad Sandwich", "Spinach Feta Pancakes"};
 
                 lunchOptions = new string[] { "Kale Salad with salmon and avocado", "Turkish Lentil Salad", "Easy Hemp Granola", "Tangy Veggie Wrap",
@@ -209,6 +189,29 @@ namespace LoginAndRegistrationForm2
                  */
             }
 
+            UserDetails.breakfastOptions = breakfastOptions;
+            UserDetails.lunchOptions = lunchOptions;
+            UserDetails.dinnerOptions = dinnerOptions;
+
+
+            change = currentWeight - targetWeight;
+            UserDetails.change = change;
+            if (change > 0)
+            {
+                exerciseType = "Weight Loss";
+            }
+            else if (change < 0)
+            {
+                exerciseType = "Weight Gain";
+            }
+            
+            //frmSetTimetable st = new frmSetTimetable();
+            ////st.Show();
+            ////st.ShowDialog();
+            ////this.Show();
+
+            
+
            
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
@@ -221,7 +224,6 @@ namespace LoginAndRegistrationForm2
 
             saveDetails(UserDetails.userName, dob, gender, currentWeight, targetWeight, diet); //Passes these values over to the subroutine saveDetails
 
-            MessageBox.Show($"User details for {userName} saved");
             //UserActivity.Quiz
             //this.Close();
 

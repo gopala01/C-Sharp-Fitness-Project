@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NEAAppDbDataSet" targetNamespace="http://tempuri.org/NEAAppDbDataSet.xsd" xmlns:mstns="http://tempuri.org/NEAAppDbDataSet.xsd" xmlns="http://tempuri.org/NEAAppDbDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NEAAppDbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NEAAppDbConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.LoginAndRegistrationForm2.Properties.Settings.GlobalReference.Default.NEAAppDbConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="activity_timetableTableAdapter" GeneratorDataComponentClassName="activity_timetableTableAdapter" Name="activity_timetable" UserDataComponentName="activity_timetableTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="NEAAppDbConnectionString (Settings)" DbObjectName="NEAAppDb.dbo.activity_timetable" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT setDate, setTime, activity FROM dbo.activity_timetable</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="setDate" DataSetColumn="setDate" />
+              <Mapping SourceColumn="setTime" DataSetColumn="setTime" />
+              <Mapping SourceColumn="activity" DataSetColumn="activity" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NEAAppDbDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="NEAAppDbDataSet" msprop:Generator_UserDSName="NEAAppDbDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="activity_timetable" msprop:Generator_TableClassName="activity_timetableDataTable" msprop:Generator_TableVarName="tableactivity_timetable" msprop:Generator_TablePropName="activity_timetable" msprop:Generator_RowDeletingName="activity_timetableRowDeleting" msprop:Generator_RowChangingName="activity_timetableRowChanging" msprop:Generator_RowEvHandlerName="activity_timetableRowChangeEventHandler" msprop:Generator_RowDeletedName="activity_timetableRowDeleted" msprop:Generator_UserTableName="activity_timetable" msprop:Generator_RowChangedName="activity_timetableRowChanged" msprop:Generator_RowEvArgName="activity_timetableRowChangeEvent" msprop:Generator_RowClassName="activity_timetableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="setDate" msprop:Generator_ColumnVarNameInTable="columnsetDate" msprop:Generator_ColumnPropNameInRow="setDate" msprop:Generator_ColumnPropNameInTable="setDateColumn" msprop:Generator_UserColumnName="setDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="setTime" msprop:Generator_ColumnVarNameInTable="columnsetTime" msprop:Generator_ColumnPropNameInRow="setTime" msprop:Generator_ColumnPropNameInTable="setTimeColumn" msprop:Generator_UserColumnName="setTime">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="activity" msprop:Generator_ColumnVarNameInTable="columnactivity" msprop:Generator_ColumnPropNameInRow="activity" msprop:Generator_ColumnPropNameInTable="activityColumn" msprop:Generator_UserColumnName="activity">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

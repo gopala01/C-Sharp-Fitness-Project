@@ -8,7 +8,7 @@ namespace LoginAndRegistrationForm2
     public partial class UserActivity : Form
     {
 
-        string userName;
+        //string userName;
         decimal currentWeight;
         decimal targetWeight;
         bool userDetailsExists;
@@ -61,17 +61,24 @@ namespace LoginAndRegistrationForm2
 
         
 
-        private bool checkUserDetails(string userName)
+        private bool checkUserDetails(string userNameCUD)
         {
-            String sqlText = $"select count(*) from dbo.user_details ud where username = '{UserDetails.userName}'";
+            String sqlText = $"select count(*) from dbo.user_details ud where username = '{userNameCUD}'";
             SqlDataReader dataReader = runSQLSelect(sqlText);
             bool result = false;
             while (dataReader.Read())
 
-
             {
                 int userCount = dataReader.GetInt32(0);
-                result = (userCount == 1) ? true : false;
+                //result = (userCount == 1) ? true : false;
+                if (userCount == 1 || userCount > 1)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
 
                 //MessageBox.Show($"User count is {userCount} and result is {result}");
             }
@@ -92,6 +99,11 @@ namespace LoginAndRegistrationForm2
             {
                 mainMenu.Enabled = false;
             }
+            else if (userDetailsExists == true)
+            {
+                mainMenu.Enabled = true;
+                Quiz.Enabled = false;
+            }
         }
 
         private void UserActivity_FormClosed(object sender, FormClosedEventArgs e)
@@ -102,7 +114,9 @@ namespace LoginAndRegistrationForm2
         private void Quiz_Click(object sender, EventArgs e)
         {
             
-            Form qz = new frmQuiz(userName, userDetailsExists);
+            
+            
+            Form qz = new frmQuiz();
             //this.Hide();
             qz.ShowDialog();
             if (! mainMenu.Enabled)
@@ -136,10 +150,10 @@ namespace LoginAndRegistrationForm2
 
         private void mainMenu_Click(object sender, EventArgs e)
         {
-            frmMainMenu mm = new frmMainMenu(userName, currentWeight, targetWeight);
+            frmMainMenu mm = new frmMainMenu();
             this.Hide();
             mm.ShowDialog();
-            this.Show();
+            this.Close();
         }
     }
 }
